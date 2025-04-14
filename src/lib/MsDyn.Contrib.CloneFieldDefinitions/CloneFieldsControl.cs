@@ -21,9 +21,9 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
     {
         private FlowLayoutPanel flowLayoutPanel2;
         private Label label1;
-        private ComboBox comboBox1;
+        private ComboBox cmb_SourceEntity;
         private Label label2;
-        private ComboBox comboBox2;
+        private ComboBox cmb_TargetEntity;
         private ListView listView1;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
@@ -84,8 +84,8 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
 
         private void SetAvailableEntities()
         {
-            comboBox1.Items.Clear();
-            comboBox2.Items.Clear();
+            cmb_SourceEntity.Items.Clear();
+            cmb_TargetEntity.Items.Clear();
 
             _entitiesSource
                 .Select(e => new { e.LogicalName, e.MetadataId })
@@ -93,7 +93,7 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
                 .ToList()
                 .ForEach(name =>
                 {
-                    comboBox1.Items.Add(name.LogicalName);
+                    cmb_SourceEntity.Items.Add(name.LogicalName);
                 });
 
             _entitiesTarget
@@ -102,7 +102,7 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
                 .ToList()
                 .ForEach(name =>
                 {
-                    comboBox2.Items.Add(name.LogicalName);
+                    cmb_TargetEntity.Items.Add(name.LogicalName);
                 });
         }
 
@@ -162,9 +162,9 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
         {
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmb_SourceEntity = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmb_TargetEntity = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPrefix = new System.Windows.Forms.TextBox();
@@ -187,9 +187,9 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
             this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel2.Controls.Add(this.label1);
-            this.flowLayoutPanel2.Controls.Add(this.comboBox1);
+            this.flowLayoutPanel2.Controls.Add(this.cmb_SourceEntity);
             this.flowLayoutPanel2.Controls.Add(this.label2);
-            this.flowLayoutPanel2.Controls.Add(this.comboBox2);
+            this.flowLayoutPanel2.Controls.Add(this.cmb_TargetEntity);
             this.flowLayoutPanel2.Controls.Add(this.button1);
             this.flowLayoutPanel2.Controls.Add(this.label3);
             this.flowLayoutPanel2.Controls.Add(this.txtPrefix);
@@ -212,16 +212,18 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
             this.label1.TabIndex = 0;
             this.label1.Text = "Source Entity";
             // 
-            // comboBox1
+            // cmb_SourceEntity
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(79, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.OnSelectSourceEntity);
-            this.comboBox1.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);            
+            this.cmb_SourceEntity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_SourceEntity.AutoCompleteSource = AutoCompleteSource.ListItems;            
+            this.cmb_SourceEntity.AutoCompleteMode = AutoCompleteMode.None;
+            this.cmb_SourceEntity.FormattingEnabled = true;
+            this.cmb_SourceEntity.Location = new System.Drawing.Point(79, 3);
+            this.cmb_SourceEntity.Name = "cmb_SourceEntity";
+            this.cmb_SourceEntity.Size = new System.Drawing.Size(121, 21);
+            this.cmb_SourceEntity.TabIndex = 1;
+            this.cmb_SourceEntity.SelectedValueChanged += new System.EventHandler(this.OnSelectSourceEntity);
+            this.cmb_SourceEntity.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);            
             // 
             // label2
             // 
@@ -233,16 +235,18 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
             this.label2.TabIndex = 2;
             this.label2.Text = "Target Entity";
             // 
-            // comboBox2
+            // cmb_TargetEntity
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(279, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 3;
-            this.comboBox2.SelectedValueChanged += new System.EventHandler(this.OnSelectTargetEntity);
-            this.comboBox2.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
+            this.cmb_TargetEntity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cmb_TargetEntity.AutoCompleteSource = AutoCompleteSource.ListItems;
+            this.cmb_TargetEntity.AutoCompleteMode = AutoCompleteMode.None;
+            this.cmb_TargetEntity.FormattingEnabled = true;
+            this.cmb_TargetEntity.Location = new System.Drawing.Point(279, 3);
+            this.cmb_TargetEntity.Name = "cmb_TargetEntity";
+            this.cmb_TargetEntity.Size = new System.Drawing.Size(121, 21);
+            this.cmb_TargetEntity.TabIndex = 3;
+            this.cmb_TargetEntity.SelectedValueChanged += new System.EventHandler(this.OnSelectTargetEntity);
+            this.cmb_TargetEntity.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
             // 
             // button1
             // 
@@ -451,9 +455,9 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
 
         private void OnSelectSourceEntity(object sender, EventArgs e)
         {
-            comboBox2.SelectedIndex = -1;
+            cmb_TargetEntity.SelectedIndex = -1;
             _entitiesDetailedSource.Clear();
-            GetEntityMetadataFromServer(comboBox1.SelectedItem.ToString(), _entitiesDetailedSource, Service);
+            GetEntityMetadataFromServer(cmb_SourceEntity.SelectedItem.ToString(), _entitiesDetailedSource, Service);
         }
 
         private void OnCloneButtonClick(object sender, EventArgs e)
@@ -463,8 +467,8 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
             var fieldsToClone = (from object checkedItem in checkedItems select ((ListViewItem)checkedItem).SubItems[1].Text)
                 .ToList();
 
-            var sourceEntity = (string)comboBox1.SelectedItem;
-            var targetEntity = (string)comboBox2.SelectedItem;
+            var sourceEntity = (string)cmb_SourceEntity.SelectedItem;
+            var targetEntity = (string)cmb_TargetEntity.SelectedItem;
 
             if (string.IsNullOrEmpty(sourceEntity) || string.IsNullOrEmpty(targetEntity))
             {
@@ -740,13 +744,13 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
 
         private void OnSelectTargetEntity(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex < 0)
+            if (cmb_SourceEntity.SelectedIndex < 0)
                 MessageBox.Show("Please Choose Source Entity.");
             else
             {
-                if (comboBox2.SelectedItem != null)
+                if (cmb_TargetEntity.SelectedItem != null)
                 {
-                    GetEntityMetadataFromServer(comboBox2.SelectedItem.ToString(), _entitiesDetailedTarget, GetTargetService());
+                    GetEntityMetadataFromServer(cmb_TargetEntity.SelectedItem.ToString(), _entitiesDetailedTarget, GetTargetService());
                 }
             }
         }
@@ -755,8 +759,8 @@ namespace MsDyn.Contrib.CloneFieldDefinitions
         {
             listView1.Items.Clear();
 
-            var sourceEntity = _entitiesDetailedSource.SingleOrDefault(en => en.LogicalName == (string)comboBox1.SelectedItem);
-            var targetEntity = _entitiesDetailedTarget.SingleOrDefault(en => en.LogicalName == (string)comboBox2.SelectedItem);
+            var sourceEntity = _entitiesDetailedSource.SingleOrDefault(en => en.LogicalName == (string)cmb_SourceEntity.SelectedItem);
+            var targetEntity = _entitiesDetailedTarget.SingleOrDefault(en => en.LogicalName == (string)cmb_TargetEntity.SelectedItem);
 
             if (sourceEntity == null || targetEntity == null)
             {
